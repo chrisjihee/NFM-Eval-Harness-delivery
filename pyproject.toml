@@ -1,0 +1,67 @@
+[project]
+name = "NFM-Eval-Harness"
+version = "2026.6"
+description = ""
+authors = [
+    { name = "chrisjihee", email = "chrisjihee@etri.re.kr" }
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # torch/torchaudio/torchvision are HARD-PINNED by vllm 0.23.0
+    "torch==2.11.0+cu128",
+    "torchaudio==2.11.0+cu128",
+    "torchvision==0.26.0+cu128",
+    "sentence-transformers==5.6.0",
+    "transformers==5.12.1",
+    "bitsandbytes==0.49.2",
+    "accelerate==1.14.0",
+    "vllm==0.23.0",
+    "peft==0.19.1",
+    "trl==1.6.0",
+
+    "huggingface-hub",
+    "sentencepiece",
+    "torchmetrics",
+    "tensorboard",
+    "tiktoken",
+    "evaluate",
+    "datasets",
+    "pyarrow",
+    "seqeval",
+
+    "bs4",
+    "nltk",
+    "pytest",
+    "pandas",
+    "xgboost",
+    "lightgbm",
+    "pydantic",
+    "matplotlib",
+    "scikit-learn",
+    "ipywidgets",
+    "jupyter",
+    "together",
+    "openai",
+
+    "pypdf",
+    "pymupdf",
+    "python-pptx",
+    "python-docx",
+    "mammoth",
+    "svgwrite",
+    "graphviz",
+    "pydot",
+    "plotly",
+    "kaleido",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]

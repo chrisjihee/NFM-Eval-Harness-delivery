@@ -1,0 +1,25 @@
+# LEGACY lm-eval/loglikelihood baseline (renamed from `open_telco_full_oranbench`).
+# NOT GSMA-leaderboard-comparable -- diagnostic only. Use the *_gsma profile
+# (open_telco_otlite_gsma / open_telco_otfull_gsma) for leaderboard comparison.
+task: open_telco_full_oranbench_lm_eval_baseline
+dataset_path: GSMA/ot-full
+dataset_name: oranbench
+output_type: multiple_choice
+training_split: null
+validation_split: null
+test_split: test
+doc_to_text: !function utils.doc_to_text_mc
+doc_to_choice: choices
+doc_to_target: answer
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 0.2
+  nfm_track: ot-full
+  leaderboard_task: oranbench
+  task_family: telco_mcq

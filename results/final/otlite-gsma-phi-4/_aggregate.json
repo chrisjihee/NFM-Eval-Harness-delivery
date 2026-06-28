@@ -1,0 +1,133 @@
+{
+  "label": "otlite-gsma-phi-4",
+  "track": "ot-lite",
+  "n_planned": 3,
+  "n_actual": 3,
+  "overall": {
+    "mean": 0.527904761904762,
+    "std": 0.0,
+    "min": 0.527904761904762,
+    "max": 0.527904761904762,
+    "n_actual": 3,
+    "spread_note": "deterministic across repeats"
+  },
+  "per_task": {
+    "teleqna": {
+      "mean": 0.762,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.762,
+        0.762,
+        0.762
+      ]
+    },
+    "teletables": {
+      "mean": 0.34,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.34,
+        0.34,
+        0.34
+      ]
+    },
+    "oranbench": {
+      "mean": 0.7466666666666667,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.7466666666666667,
+        0.7466666666666667,
+        0.7466666666666667
+      ]
+    },
+    "srsranbench": {
+      "mean": 0.8466666666666667,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.8466666666666667,
+        0.8466666666666667,
+        0.8466666666666667
+      ]
+    },
+    "telemath": {
+      "mean": 0.43,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.43,
+        0.43,
+        0.43
+      ]
+    },
+    "telelogs": {
+      "mean": 0.23,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.23,
+        0.23,
+        0.23
+      ]
+    },
+    "three_gpp": {
+      "mean": 0.34,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.34,
+        0.34,
+        0.34
+      ]
+    }
+  },
+  "per_run": [
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otlite-gsma-phi-4/run1/microsoft__phi-4/results_2026-06-28T22-06-54.882491.json",
+      "track": "ot-lite",
+      "tasks": {
+        "teleqna": 0.762,
+        "teletables": 0.34,
+        "oranbench": 0.7466666666666667,
+        "srsranbench": 0.8466666666666667,
+        "telemath": 0.43,
+        "telelogs": 0.23,
+        "three_gpp": 0.34
+      },
+      "unweighted_mean": 0.527904761904762,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otlite-gsma-phi-4/run2/microsoft__phi-4/results_2026-06-28T22-11-12.379705.json",
+      "track": "ot-lite",
+      "tasks": {
+        "teleqna": 0.762,
+        "teletables": 0.34,
+        "oranbench": 0.7466666666666667,
+        "srsranbench": 0.8466666666666667,
+        "telemath": 0.43,
+        "telelogs": 0.23,
+        "three_gpp": 0.34
+      },
+      "unweighted_mean": 0.527904761904762,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otlite-gsma-phi-4/run3/microsoft__phi-4/results_2026-06-28T22-15-25.604010.json",
+      "track": "ot-lite",
+      "tasks": {
+        "teleqna": 0.762,
+        "teletables": 0.34,
+        "oranbench": 0.7466666666666667,
+        "srsranbench": 0.8466666666666667,
+        "telemath": 0.43,
+        "telelogs": 0.23,
+        "three_gpp": 0.34
+      },
+      "unweighted_mean": 0.527904761904762,
+      "missing_tasks": []
+    }
+  ]
+}

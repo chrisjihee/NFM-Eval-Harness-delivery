@@ -1,0 +1,133 @@
+{
+  "label": "otfull-gsma-falcon3-10b",
+  "track": "ot-full",
+  "n_planned": 3,
+  "n_actual": 3,
+  "overall": {
+    "mean": 0.46204354123954655,
+    "std": 0.001969644482642221,
+    "min": 0.4597691916950239,
+    "max": 0.46318071601180794,
+    "n_actual": 3,
+    "spread_note": "3 of 3"
+  },
+  "per_task": {
+    "teleqna": {
+      "mean": 0.6989333333333333,
+      "std": 0.00046188021535171385,
+      "n": 3,
+      "values": [
+        0.6992,
+        0.6992,
+        0.6984
+      ]
+    },
+    "teletables": {
+      "mean": 0.29,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.29,
+        0.29,
+        0.29
+      ]
+    },
+    "oranbench": {
+      "mean": 0.6777777777777777,
+      "std": 0.0007698003589194804,
+      "n": 3,
+      "values": [
+        0.6773333333333333,
+        0.6773333333333333,
+        0.6786666666666666
+      ]
+    },
+    "srsranbench": {
+      "mean": 0.7769640479360852,
+      "std": 0.001153162987728962,
+      "n": 3,
+      "values": [
+        0.7776298268974701,
+        0.7776298268974701,
+        0.7756324900133156
+      ]
+    },
+    "telemath": {
+      "mean": 0.29,
+      "std": 0.006928203230275516,
+      "n": 3,
+      "values": [
+        0.294,
+        0.294,
+        0.282
+      ]
+    },
+    "telelogs": {
+      "mean": 0.19212962962962962,
+      "std": 0.006014065304058612,
+      "n": 3,
+      "values": [
+        0.19560185185185186,
+        0.19560185185185186,
+        0.18518518518518517
+      ]
+    },
+    "three_gpp": {
+      "mean": 0.3085,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.3085,
+        0.3085,
+        0.3085
+      ]
+    }
+  },
+  "per_run": [
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otfull-gsma-falcon3-10b/run1/tiiuae__Falcon3-10B-Instruct/results_2026-06-28T22-26-36.968665.json",
+      "track": "ot-full",
+      "tasks": {
+        "teleqna": 0.6992,
+        "teletables": 0.29,
+        "oranbench": 0.6773333333333333,
+        "srsranbench": 0.7776298268974701,
+        "telemath": 0.294,
+        "telelogs": 0.19560185185185186,
+        "three_gpp": 0.3085
+      },
+      "unweighted_mean": 0.46318071601180794,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otfull-gsma-falcon3-10b/run2/tiiuae__Falcon3-10B-Instruct/results_2026-06-28T22-42-35.903992.json",
+      "track": "ot-full",
+      "tasks": {
+        "teleqna": 0.6992,
+        "teletables": 0.29,
+        "oranbench": 0.6773333333333333,
+        "srsranbench": 0.7776298268974701,
+        "telemath": 0.294,
+        "telelogs": 0.19560185185185186,
+        "three_gpp": 0.3085
+      },
+      "unweighted_mean": 0.46318071601180794,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otfull-gsma-falcon3-10b/run3/tiiuae__Falcon3-10B-Instruct/results_2026-06-28T22-58-36.468651.json",
+      "track": "ot-full",
+      "tasks": {
+        "teleqna": 0.6984,
+        "teletables": 0.29,
+        "oranbench": 0.6786666666666666,
+        "srsranbench": 0.7756324900133156,
+        "telemath": 0.282,
+        "telelogs": 0.18518518518518517,
+        "three_gpp": 0.3085
+      },
+      "unweighted_mean": 0.4597691916950239,
+      "missing_tasks": []
+    }
+  ]
+}

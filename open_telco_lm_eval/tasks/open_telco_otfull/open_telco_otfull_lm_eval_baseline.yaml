@@ -1,0 +1,18 @@
+# LEGACY lm-eval/loglikelihood baseline (renamed from `open_telco_otfull`).
+# NOT GSMA-leaderboard-comparable -- diagnostic only. Use the *_gsma profile
+# (open_telco_otlite_gsma / open_telco_otfull_gsma) for leaderboard comparison.
+group: open_telco_otfull_lm_eval_baseline
+task:
+  - open_telco_full_teleqna_lm_eval_baseline
+  - open_telco_full_teletables_lm_eval_baseline
+  - open_telco_full_oranbench_lm_eval_baseline
+  - open_telco_full_srsranbench_lm_eval_baseline
+  - open_telco_full_telemath_lm_eval_baseline
+  - open_telco_full_telelogs_lm_eval_baseline
+  - open_telco_full_3gpp_tsg_lm_eval_baseline
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+metadata:
+  version: 0.2
+  description: Open Telco ot-full 7-task leaderboard-style baseline for NFM evaluation

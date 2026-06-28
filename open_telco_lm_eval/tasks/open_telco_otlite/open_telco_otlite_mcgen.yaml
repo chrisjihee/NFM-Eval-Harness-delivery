@@ -1,0 +1,14 @@
+# NON-DEFAULT experimental group; legacy default scoring (open_telco_otlite_lm_eval_baseline) unchanged.
+# Aggregates the generation-based MC scoring variants (teleqna / oranbench /
+# srsranbench). teletables is excluded (table-content confound) and 3gpp
+# already has a generation variant (open_telco_3gpp_tsg_gen).
+group: open_telco_otlite_mcgen
+task:
+  - open_telco_teleqna_mcgen
+  - open_telco_oranbench_mcgen
+  - open_telco_srsranbench_mcgen
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+metadata:
+  version: 0.1

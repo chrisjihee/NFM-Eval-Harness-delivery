@@ -1,0 +1,32 @@
+# NON-DEFAULT GSMA-aligned generation variant (scorer-only alignment).
+# The scorer mirrors the gsma-evals telelogs contract; the generation engine
+# still differs (lm-eval generate_until vs official Inspect generate). The
+# default open_telco_full_telelogs task is unchanged.
+#
+# max_gen_toks=1024 (LIMIT=20 smoke: the 256 cap truncated CoT before the
+# final \boxed{} -> boxed-rate 0.00; raised to match GSMA's uncapped generation) (scorer reads only
+# the first/last extracted label); NOT a parity-loss. Official Inspect leaves
+# max_tokens provider-default; cap-hit% measured at smoke.
+task: open_telco_full_telelogs_gsma
+dataset_path: GSMA/ot-full
+dataset_name: telelogs
+output_type: generate_until
+training_split: null
+validation_split: null
+test_split: test
+doc_to_text: !function utils.doc_to_text_telelogs_gsma
+doc_to_target: !function utils.doc_to_target_text
+process_results: !function utils.process_results_telelogs_gsma
+generation_kwargs:
+  until: []
+  do_sample: false
+  temperature: 0.0
+  max_gen_toks: 1024
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 0.1
+  nfm_track: ot-full
+  gsma_aligned: scorer-only

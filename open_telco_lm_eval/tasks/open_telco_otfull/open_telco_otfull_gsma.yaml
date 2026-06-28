@@ -1,0 +1,22 @@
+# NON-DEFAULT GSMA-aligned profile; legacy default scoring (open_telco_otfull_lm_eval_baseline) unchanged.
+# unweighted task mean = leaderboard convention ONLY (official run_evals.py
+# computes NO cross-task average; sixg_bench excluded). For the 4 MC tasks
+# (teleqna / oranbench / srsranbench / teletables) the generation engine is
+# UNALIGNED vs official constrained decoding; the *_gsma generation scorers
+# mirror gsma-evals source but the generation engine still differs (lm-eval
+# vs Inspect generate).
+group: open_telco_otfull_gsma
+task:
+  - open_telco_full_teleqna_mcgen
+  - open_telco_full_oranbench_mcgen
+  - open_telco_full_srsranbench_mcgen
+  - open_telco_full_teletables_mcgen
+  - open_telco_full_telemath_gsma
+  - open_telco_full_telelogs_gsma
+  - open_telco_full_3gpp_tsg_gsma
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+    weight_by_size: false
+metadata:
+  version: 0.1

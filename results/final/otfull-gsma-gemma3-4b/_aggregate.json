@@ -1,0 +1,133 @@
+{
+  "label": "otfull-gsma-gemma3-4b",
+  "track": "ot-full",
+  "n_planned": 3,
+  "n_actual": 3,
+  "overall": {
+    "mean": 0.3886790827984791,
+    "std": 0.0010579566718597353,
+    "min": 0.38806827122918996,
+    "max": 0.3899007059370575,
+    "n_actual": 3,
+    "spread_note": "3 of 3"
+  },
+  "per_task": {
+    "teleqna": {
+      "mean": 0.6313333333333333,
+      "std": 5.7735026918956215e-05,
+      "n": 3,
+      "values": [
+        0.6314,
+        0.6313,
+        0.6313
+      ]
+    },
+    "teletables": {
+      "mean": 0.262,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.262,
+        0.262,
+        0.262
+      ]
+    },
+    "oranbench": {
+      "mean": 0.6355555555555555,
+      "std": 0.0007698003589194804,
+      "n": 3,
+      "values": [
+        0.6346666666666667,
+        0.636,
+        0.636
+      ]
+    },
+    "srsranbench": {
+      "mean": 0.7774079005770084,
+      "std": 0.001921938312881582,
+      "n": 3,
+      "values": [
+        0.7796271637816246,
+        0.7762982689747004,
+        0.7762982689747004
+      ]
+    },
+    "telemath": {
+      "mean": 0.08,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.08,
+        0.08,
+        0.08
+      ]
+    },
+    "telelogs": {
+      "mean": 0.10262345679012345,
+      "std": 0.007350524260516062,
+      "n": 3,
+      "values": [
+        0.1111111111111111,
+        0.09837962962962964,
+        0.09837962962962964
+      ]
+    },
+    "three_gpp": {
+      "mean": 0.23183333333333334,
+      "std": 0.0011547005383792525,
+      "n": 3,
+      "values": [
+        0.2305,
+        0.2325,
+        0.2325
+      ]
+    }
+  },
+  "per_run": [
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otfull-gsma-gemma3-4b/run1/google__gemma-3-4b-it/results_2026-06-28T22-19-38.490843.json",
+      "track": "ot-full",
+      "tasks": {
+        "teleqna": 0.6314,
+        "teletables": 0.262,
+        "oranbench": 0.6346666666666667,
+        "srsranbench": 0.7796271637816246,
+        "telemath": 0.08,
+        "telelogs": 0.1111111111111111,
+        "three_gpp": 0.2305
+      },
+      "unweighted_mean": 0.3899007059370575,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otfull-gsma-gemma3-4b/run2/google__gemma-3-4b-it/results_2026-06-28T22-30-08.296961.json",
+      "track": "ot-full",
+      "tasks": {
+        "teleqna": 0.6313,
+        "teletables": 0.262,
+        "oranbench": 0.636,
+        "srsranbench": 0.7762982689747004,
+        "telemath": 0.08,
+        "telelogs": 0.09837962962962964,
+        "three_gpp": 0.2325
+      },
+      "unweighted_mean": 0.38806827122918996,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otfull-gsma-gemma3-4b/run3/google__gemma-3-4b-it/results_2026-06-28T22-40-47.947234.json",
+      "track": "ot-full",
+      "tasks": {
+        "teleqna": 0.6313,
+        "teletables": 0.262,
+        "oranbench": 0.636,
+        "srsranbench": 0.7762982689747004,
+        "telemath": 0.08,
+        "telelogs": 0.09837962962962964,
+        "three_gpp": 0.2325
+      },
+      "unweighted_mean": 0.38806827122918996,
+      "missing_tasks": []
+    }
+  ]
+}

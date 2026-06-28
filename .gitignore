@@ -1,0 +1,49 @@
+# NFM-Eval-Harness-delivery — slim INL handoff repo .gitignore
+# Heavy third-party deps and the venv are NOT vendored: setup-*.sh clones/installs
+# them (lm-eval pinned SHA 97a5e2c7, gsma-evals). Tonight they are symlinked from the
+# engineering-source repo (gitignored, never committed).
+
+# venv + cloned third-party harnesses (symlinked tonight; setup-*.sh reproduces).
+# No trailing slash: these are symlinks tonight (not dirs), so a trailing-slash
+# pattern would NOT match them and they would get tracked. Match both symlink + dir.
+.venv
+lm-evaluation-harness
+gsma-evals
+
+# Byte-compiled / caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.cache*
+
+# OMC / agent scratch + editors (never ship to a public repo)
+.omc/
+.omx/
+.claude*
+.DS_Store
+.idea/
+
+# Ephemeral working outputs (not part of the delivery bundle)
+outputs/
+
+# setup-*.sh generated artifacts (local only)
+version-dep.txt
+version-vllm-check.log
+.cache_hf
+cuda_*.run
+
+# eval results: keep curated final evidence (results/final/**: results_*.json + *.md)
+# tracked, but never commit large per-sample dumps or raw logs.
+results/**/*_samples_*.jsonl
+results/**/samples_*.jsonl
+results/**/*.log
+results/**/*.tmp
+results/smoke-*/
+results/conf-*/
+
+# overnight orchestrator ephemera (keep results_*.json + _aggregate.json)
+results/final/_status.json
+results/final/_logs/
+results/final/**/_aggregate.md

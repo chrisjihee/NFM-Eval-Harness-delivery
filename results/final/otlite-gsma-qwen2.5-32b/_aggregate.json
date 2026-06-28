@@ -1,0 +1,133 @@
+{
+  "label": "otlite-gsma-qwen2.5-32b",
+  "track": "ot-lite",
+  "n_planned": 3,
+  "n_actual": 3,
+  "overall": {
+    "mean": 0.5068253968253967,
+    "std": 0.006708260270584235,
+    "min": 0.5029523809523809,
+    "max": 0.5145714285714286,
+    "n_actual": 3,
+    "spread_note": "3 of 3"
+  },
+  "per_task": {
+    "teleqna": {
+      "mean": 0.7733333333333334,
+      "std": 0.0011547005383792525,
+      "n": 3,
+      "values": [
+        0.774,
+        0.774,
+        0.772
+      ]
+    },
+    "teletables": {
+      "mean": 0.3233333333333333,
+      "std": 0.005773502691896263,
+      "n": 3,
+      "values": [
+        0.32,
+        0.32,
+        0.33
+      ]
+    },
+    "oranbench": {
+      "mean": 0.7666666666666667,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.7666666666666667,
+        0.7666666666666667,
+        0.7666666666666667
+      ]
+    },
+    "srsranbench": {
+      "mean": 0.7977777777777778,
+      "std": 0.00384900179459753,
+      "n": 3,
+      "values": [
+        0.8,
+        0.8,
+        0.7933333333333333
+      ]
+    },
+    "telemath": {
+      "mean": 0.38666666666666666,
+      "std": 0.02886751345948128,
+      "n": 3,
+      "values": [
+        0.37,
+        0.37,
+        0.42
+      ]
+    },
+    "telelogs": {
+      "mean": 0.18999999999999997,
+      "std": 0.017320508075688773,
+      "n": 3,
+      "values": [
+        0.18,
+        0.18,
+        0.21
+      ]
+    },
+    "three_gpp": {
+      "mean": 0.31,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.31,
+        0.31,
+        0.31
+      ]
+    }
+  },
+  "per_run": [
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otlite-gsma-qwen2.5-32b/run1/Qwen__Qwen2.5-32B-Instruct/results_2026-06-28T23-13-53.392535.json",
+      "track": "ot-lite",
+      "tasks": {
+        "teleqna": 0.774,
+        "teletables": 0.32,
+        "oranbench": 0.7666666666666667,
+        "srsranbench": 0.8,
+        "telemath": 0.37,
+        "telelogs": 0.18,
+        "three_gpp": 0.31
+      },
+      "unweighted_mean": 0.5029523809523809,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otlite-gsma-qwen2.5-32b/run2/Qwen__Qwen2.5-32B-Instruct/results_2026-06-28T23-20-24.784343.json",
+      "track": "ot-lite",
+      "tasks": {
+        "teleqna": 0.774,
+        "teletables": 0.32,
+        "oranbench": 0.7666666666666667,
+        "srsranbench": 0.8,
+        "telemath": 0.37,
+        "telelogs": 0.18,
+        "three_gpp": 0.31
+      },
+      "unweighted_mean": 0.5029523809523809,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otlite-gsma-qwen2.5-32b/run3/Qwen__Qwen2.5-32B-Instruct/results_2026-06-28T23-26-58.382725.json",
+      "track": "ot-lite",
+      "tasks": {
+        "teleqna": 0.772,
+        "teletables": 0.33,
+        "oranbench": 0.7666666666666667,
+        "srsranbench": 0.7933333333333333,
+        "telemath": 0.42,
+        "telelogs": 0.21,
+        "three_gpp": 0.31
+      },
+      "unweighted_mean": 0.5145714285714286,
+      "missing_tasks": []
+    }
+  ]
+}

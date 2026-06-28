@@ -1,0 +1,14 @@
+# NON-DEFAULT experimental group; legacy default scoring (open_telco_otfull_lm_eval_baseline) unchanged.
+# Aggregates the generation-based MC scoring variants on the ot-full split
+# (teleqna / oranbench / srsranbench). teletables excluded (table-content
+# confound) and 3gpp already uses a generation variant.
+group: open_telco_otfull_mcgen
+task:
+  - open_telco_full_teleqna_mcgen
+  - open_telco_full_oranbench_mcgen
+  - open_telco_full_srsranbench_mcgen
+aggregate_metric_list:
+  - metric: acc
+    aggregation: mean
+metadata:
+  version: 0.1

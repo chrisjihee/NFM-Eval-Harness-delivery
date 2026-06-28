@@ -1,0 +1,28 @@
+# NON-DEFAULT collapse-gate fallback variant. DEVIATES from the official GSMA
+# raw-question contract by adding ONE output-format instruction line (gold-free).
+# Use only when the faithful open_telco_telelogs_gsma collapses (boxed-rate < 0.30
+# at smoke). Documented as a comparison variant, NOT GSMA reproduction.
+# Scorer is identical to telelogs_gsma (soft: first integer of last \boxed{}).
+task: open_telco_telelogs_gsma_hinted
+dataset_path: GSMA/ot-lite
+dataset_name: telelogs
+output_type: generate_until
+training_split: null
+validation_split: null
+test_split: test
+doc_to_text: !function utils.doc_to_text_telelogs_gsma_hinted
+doc_to_target: !function utils.doc_to_target_text
+process_results: !function utils.process_results_telelogs_gsma
+generation_kwargs:
+  until: []
+  do_sample: false
+  temperature: 0.0
+  max_gen_toks: 1024
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 0.1
+  nfm_track: ot-lite
+  gsma_aligned: scorer-only-hinted

@@ -1,0 +1,63 @@
+# 07 릴리스 노트
+
+## v0.1-inl-delivery — slim 전달 저장소 초판 (2026-06-28)
+
+이 저장소(`NFM-Eval-Harness-delivery`)는 EleutherAI lm-evaluation-harness 기반  
+GSMA Open Telco 평가 하네스의 slim 문서 중심 전달본이다.  
+원본 engineering-source 저장소(`NFM-Eval-Harness`, HEAD `3954cac`, PR #1~#6 포함)의  
+전체 커밋·실험 이력은 원본에 보존되며, 이 저장소는 독립 단일-커밋 공개본이다.
+
+수치/결과 상세는 `docs/04-final-results.md` 참조. 본 노트는 수치를 재기재하지 않는다.
+
+---
+
+### Added
+
+- **slim 문서 체계** (`docs/00`–`08`): 개요·퀵스타트·프로파일·정렬 분석·최종 결과·운영·INL 핸드오프·릴리스 노트·결과 매니페스트.
+- **스크립트 5종**: `run_open_telco_otlite.sh`, `run_open_telco_otfull.sh`, `setup-pre.sh`, `setup-main.sh`, `setup-post.sh`, `scripts/aggregate_repeats.py`.
+- **테스트 3종**: `tests/` 아래 parser·smoke·결과 정합성 검증.
+- **results/final/** 디렉터리 구조: 10개 후보 모델 × `{otlite,otfull}-gsma` × run{1,2,3}/ 폴더 + `_aggregate.json`.  
+  fresh rerun(3회 반복, mean±spread)을 수행한 후 `docs/04-final-results.md`와 함께 채워진다.
+
+### Changed
+
+- **루트 클러터 제거**: engineering-source의 `PLAN.md`, `HANDOFF.md`, `EXPERIMENTS.md`, `PROGRESS.md`, `REPRODUCTION_NOTES.md`, `GSMA_SCORING_CONTRACT.md`, `PACKAGING_CHECKLIST.md`, `INL_HANDOFF.md`, `chat/`, `lm-eval-ls-task` 등 내부 개발 아티팩트 미포함.
+- **기본 task 프로파일**: `open_telco_otlite_gsma` / `open_telco_otfull_gsma`가 기본·권장 경로. run 스크립트가 `TASKS` 미지정 시 자동 선택.
+- **legacy 오프-기본 경로**: `*_lm_eval_baseline`(loglikelihood 기반)은 diagnostic 목적으로만 보존되며 기본 실행 경로에 포함되지 않는다. bare `open_telco_otlite`/`open_telco_otfull`은 실행 불가(run 스크립트 `exit 2`).
+
+### Validated
+
+- `make smoke` — task YAML 로딩 및 의존성 검증 통과.
+- `pytest tests/` — parser·smoke·정합성 테스트 통과.
+- `make delivery-check` — 금지 문구·tracked 파일 크기(50MB 이하) 게이트 통과.
+- from-scratch setup(`setup-pre.sh` → `setup-main.sh` → `setup-post.sh` → `make smoke`) 흐름 검증.
+
+### Known Limitations
+
+- **공식 GSMA stack 완전 재현 아님**: 공식은 Inspect AI 기반, 이 하네스는 lm-eval 기반. 동일 점수 재현은 목표가 아니다.
+- **MC engine 미정렬**: MC 4종은 자유 single-letter `generate_until` 방식(`max_gen_toks:8`)이며, 공식의 제약 디코딩(`multiple_choice(cot=False)`)과 다르다. 이 차이가 가장 큰 점수 격차 요인이다.
+- **reasoning/harmony 모델 비호환**: enable_thinking 미해제·단답 출력 미조정 상태의 reasoning 모델은 MC engine collapse가 artifact이므로 비교에서 제외한다.
+- **teletables `TELETABLES_ROOT` 미설정 시 degraded**: run 스크립트가 자동 export하지 않으므로 표 원본이 필요할 경우 별도 설정 필요.
+
+### Not Included
+
+- model weights / HF cache / per-sample dump(`.jsonl`) / raw log — 전부 비추적·미포함.
+- engineering-source의 실험 이력(`chat/`, `lm-eval-ls-task`, `results/smoke-*`, `results/conf-*`).
+- 멀티모달·LMM·LAM, 동적 제어, Planning(Intent→Recipe), RAG-grounded QA, Korean Telco QA(2차 과제 범위).
+
+### Reproducibility
+
+- 환경 핀: Python 3.12.13, torch 2.11.0+cu128, transformers 5.12.1, vllm 0.23.0.
+- lm-evaluation-harness: `97a5e2c7`(`97a5e2c710e2b56b9dd48f367bb6fe87bbb2c176`) pin 고정. `setup-post.sh`가 clone·설치.
+- gsma-evals: `gsma-labs/evals` — `setup-post.sh`가 clone. 임의 수정 금지.
+- VM 운영 레시피(NCCL loopback + HF offline cache)는 `docs/05-operations-and-troubleshooting.md` 참조.
+
+---
+
+## License Posture
+
+이 저장소의 라이선스는 현재 **TBD**이다(원본 engineering-source 저장소와 동일하게 명시 라이선스 없음; INL 내부 사용 기준).  
+별도 라이선스 결정 전까지 재배포 라이선스를 부여하지 않는다.
+
+포함된 third-party 컴포넌트(`lm-evaluation-harness`, `gsma-evals`)는 각자 고유 라이선스를 따른다.  
+사용 전 해당 저장소의 라이선스 조건을 확인한다.

@@ -1,0 +1,27 @@
+# experimental: generation-based MC scoring sensitivity variant. NON-DEFAULT.
+# Not an official-alignment claim. The default open_telco_full_srsranbench
+# (multiple_choice) task is unchanged.
+task: open_telco_full_srsranbench_mcgen
+dataset_path: GSMA/ot-full
+dataset_name: srsranbench
+output_type: generate_until
+training_split: null
+validation_split: null
+test_split: test
+doc_to_text: !function utils.doc_to_text_mc_gen
+doc_to_target: answer
+process_results: !function utils.process_results_mc_gen
+generation_kwargs:
+  until:
+    - "\n"
+  do_sample: false
+  temperature: 0.0
+  max_gen_toks: 8
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 0.1
+  nfm_track: ot-full
+  leaderboard_task: srsranbench

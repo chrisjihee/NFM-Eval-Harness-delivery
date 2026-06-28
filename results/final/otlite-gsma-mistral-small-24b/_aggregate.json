@@ -1,0 +1,133 @@
+{
+  "label": "otlite-gsma-mistral-small-24b",
+  "track": "ot-lite",
+  "n_planned": 3,
+  "n_actual": 3,
+  "overall": {
+    "mean": 0.5078095238095238,
+    "std": 0.0021821789023598894,
+    "min": 0.5054285714285714,
+    "max": 0.5097142857142857,
+    "n_actual": 3,
+    "spread_note": "3 of 3"
+  },
+  "per_task": {
+    "teleqna": {
+      "mean": 0.758,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.758,
+        0.758,
+        0.758
+      ]
+    },
+    "teletables": {
+      "mean": 0.3,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.3,
+        0.3,
+        0.3
+      ]
+    },
+    "oranbench": {
+      "mean": 0.8000000000000002,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "srsranbench": {
+      "mean": 0.7200000000000001,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.72,
+        0.72,
+        0.72
+      ]
+    },
+    "telemath": {
+      "mean": 0.3333333333333333,
+      "std": 0.011547005383792526,
+      "n": 3,
+      "values": [
+        0.34,
+        0.34,
+        0.32
+      ]
+    },
+    "telelogs": {
+      "mean": 0.15333333333333332,
+      "std": 0.005773502691896263,
+      "n": 3,
+      "values": [
+        0.16,
+        0.15,
+        0.15
+      ]
+    },
+    "three_gpp": {
+      "mean": 0.49,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.49,
+        0.49,
+        0.49
+      ]
+    }
+  },
+  "per_run": [
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otlite-gsma-mistral-small-24b/run1/mistralai__Mistral-Small-24B-Instruct-2501/results_2026-06-28T23-01-33.790898.json",
+      "track": "ot-lite",
+      "tasks": {
+        "teleqna": 0.758,
+        "teletables": 0.3,
+        "oranbench": 0.8,
+        "srsranbench": 0.72,
+        "telemath": 0.34,
+        "telelogs": 0.16,
+        "three_gpp": 0.49
+      },
+      "unweighted_mean": 0.5097142857142857,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otlite-gsma-mistral-small-24b/run2/mistralai__Mistral-Small-24B-Instruct-2501/results_2026-06-28T23-04-28.987750.json",
+      "track": "ot-lite",
+      "tasks": {
+        "teleqna": 0.758,
+        "teletables": 0.3,
+        "oranbench": 0.8,
+        "srsranbench": 0.72,
+        "telemath": 0.34,
+        "telelogs": 0.15,
+        "three_gpp": 0.49
+      },
+      "unweighted_mean": 0.5082857142857142,
+      "missing_tasks": []
+    },
+    {
+      "path": "/raid/chrisjihee/code/NFM-Eval-Harness-delivery/results/final/otlite-gsma-mistral-small-24b/run3/mistralai__Mistral-Small-24B-Instruct-2501/results_2026-06-28T23-07-21.367465.json",
+      "track": "ot-lite",
+      "tasks": {
+        "teleqna": 0.758,
+        "teletables": 0.3,
+        "oranbench": 0.8,
+        "srsranbench": 0.72,
+        "telemath": 0.32,
+        "telelogs": 0.15,
+        "three_gpp": 0.49
+      },
+      "unweighted_mean": 0.5054285714285714,
+      "missing_tasks": []
+    }
+  ]
+}
