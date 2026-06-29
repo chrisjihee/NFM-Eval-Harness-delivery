@@ -15,12 +15,7 @@ engineering-source 저장소에 보존된다(이 slim 저장소에 복제하지 
 | #3 | task 이름 정리 — 기본 경로를 `*_gsma`로 정착, bare name fail-fast, legacy를 `*_lm_eval_baseline`으로 rename |
 | #4 | 전달 6종 모델 평가 — gemma/qwen/mistral 계열 ot-lite_gsma screening, PASS4 delivery bundle |
 | #5 | 확장 평가 — 11종 ot-lite + 14종 ot-full, VM 운영 레시피(NCCL loopback + HF offline), LB 비교 검증(비-gemma3 ±0.021 이내) |
-| #6 | INL 패키징 — 전달 문서(`INL_HANDOFF`, `RESULTS_MANIFEST`, `PACKAGING_CHECKLIST`, `RELEASE_NOTES`) + `make delivery-check` 게이트 |
-
-> 참고(2026-06-29): PR#6에서 추가한 root 전달 메타 문서(`INL_HANDOFF`/`DELIVERY_PACKAGE`/
-> `RESULTS_MANIFEST`/`PACKAGING_CHECKLIST`/`USAGE_SCOPE`)는 이후 slim화로 제거되었다. 핵심
-> 내용은 `docs/06-inl-handoff.md`(인수 가이드)·`docs/07-release-notes.md`(릴리스/라이선스)·
-> `docs/08-results-manifest.md`(결과 매니페스트)에 통합되어 있다.
+| #6 | INL 패키징 — 전달 문서 정리 및 `make delivery-check` 게이트 |
 
 주요 이정표:
 
