@@ -1,7 +1,6 @@
 # 06 — INL 인수 가이드
 
-> 지능네트워크연구실(INL) 인수자를 위한 시작점.
-> 30분이면 이 harness가 무엇인지, 어떻게 돌리는지, 결과가 무슨 의미인지 파악할 수 있다.
+> 처음 개발자 이외의 개발자가 이 harness가 무엇인지, 어떻게 돌리는지, 결과가 무슨 의미인지 파악할 수 있다.
 > 정확한 수치·delta는 [docs/04-final-results.md](04-final-results.md) 참조. 이 문서에서 점수를 재기술하지 않는다.
 
 ---
@@ -35,7 +34,7 @@ EleutherAI **lm-evaluation-harness 기반**으로 GSMA Open Telco AI 7개 통신
 
 ---
 
-## 3. 가장 먼저 — smoke + acceptance (약 30분)
+## 3. 가장 먼저 — smoke + acceptance
 
 ```bash
 # 1) GPU 없이 task YAML 로딩 검증

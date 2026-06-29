@@ -81,7 +81,7 @@ gemma-3-4b-it ot-lite_gsma `0.3992` ≈ ot-full_gsma `0.3926` ≈ public `0.397`
 | `docs/03-gsma-alignment-and-caveats.md` | public 비교 caveat, 격차 분해, MC engine 미정렬 |
 | `docs/04-final-results.md` | 최종 평가 결과 수치 (모델별 unweighted task mean) |
 | `docs/05-operations-and-troubleshooting.md` | 운영 변수, 대형 모델 설정, 알려진 장애 |
-| `docs/06-inl-handoff.md` | INL 인수자 가이드 — 30분 acceptance test, 체크리스트 |
+| `docs/06-inl-handoff.md` | INL 인수자 가이드 — acceptance test, 체크리스트 |
 | `docs/07-release-notes.md` | PR #1~#6 변경 이력 |
 | `docs/08-results-manifest.md` | 전달 산출물 위치·공유 안전 여부 |
 | `docs/presentation-prompt-ko.md` | 발표용 프롬프트 (한국어) |

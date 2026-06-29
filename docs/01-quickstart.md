@@ -104,4 +104,4 @@ make delivery-check
 | [docs/02-profiles-and-scoring.md](02-profiles-and-scoring.md) | profile 상세, scoring contract, YAML 구조 |
 | [docs/03-gsma-alignment-and-caveats.md](03-gsma-alignment-and-caveats.md) | public 비교 caveat, 격차 분해, MC engine 미정렬 |
 | [docs/05-operations-and-troubleshooting.md](05-operations-and-troubleshooting.md) | 대형 모델 운영 변수, NCCL/HF-hub hang 대처, 알려진 장애 |
-| [docs/06-inl-handoff.md](06-inl-handoff.md) | INL 인수자 가이드 — 30분 acceptance test, 체크리스트 |
+| [docs/06-inl-handoff.md](06-inl-handoff.md) | INL 인수자 가이드 — acceptance test, 체크리스트 |

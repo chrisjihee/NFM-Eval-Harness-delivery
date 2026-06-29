@@ -72,7 +72,7 @@ INL 전달본(delivery repo) 최종 polish를 위한 read-only audit 결과. (PA
 ### Modified / added files (delivery repo, final commit `6e5985c`; audit 중간 기록은 `fa6e465`)
 - 신규(root): `INL_HANDOFF.md`, `DELIVERY_PACKAGE.md`, `RESULTS_MANIFEST.md`, `PACKAGING_CHECKLIST.md`, `USAGE_SCOPE.md`
 - 신규(archive): `docs/archive/engineering-history-index.md`, `docs/archive/final-audit-delta.md`
-- 편집: `README.md`(정본 문구·results/final·30분 acceptance test·USAGE_SCOPE 링크),
+- 편집: `README.md`(정본 문구·results/final·acceptance test·USAGE_SCOPE 링크),
   `docs/07-release-notes.md`(rerun 완료·TeleTables parity·release tag),
   `docs/05-operations-and-troubleshooting.md`(TELETABLES_ROOT legacy 한정),
   `docs/presentation-prompt-ko.md`(TeleTables question+choices parity)
