@@ -1,7 +1,5 @@
 # NFM-Eval-Harness 개요
 
----
-
 ## 저장소 정체성과 목적
 
 이 저장소는 EleutherAI **lm-evaluation-harness**를
