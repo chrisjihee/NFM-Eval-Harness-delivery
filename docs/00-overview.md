@@ -1,6 +1,6 @@
 # NFM-Eval-Harness 개요
 
-> **provenance**: 원본 저장소 `NFM-Eval-Harness` HEAD `3954cac` 기준 slim화 전달본.
+> **provenance**: 원본 저장소 `NFM-Eval-Harness` 기준 slim화 전달본(정확한 engineering HEAD는 인수 시점 원본 repo 확인).
 
 ---
 

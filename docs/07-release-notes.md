@@ -4,8 +4,8 @@
 
 이 저장소(`NFM-Eval-Harness-delivery`)는 EleutherAI lm-evaluation-harness 기반  
 GSMA Open Telco 평가 하네스의 slim 문서 중심 전달본이다.  
-원본 engineering-source 저장소(`NFM-Eval-Harness`, HEAD `3954cac`, PR #1~#6 포함)의  
-전체 커밋·실험 이력은 원본에 보존되며, 이 저장소는 독립 단일-커밋 공개본이다.
+원본 engineering-source 저장소(`NFM-Eval-Harness`)의  
+전체 커밋·실험 이력은 원본에 보존되며, 이 저장소는 slim handoff 공개본이다. 정확한 engineering HEAD는 인수 시점의 원본 repo를 확인한다.
 
 수치/결과 상세는 `docs/04-final-results.md` 참조. 본 노트는 수치를 재기재하지 않는다.
 
