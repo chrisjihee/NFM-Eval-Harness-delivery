@@ -71,6 +71,10 @@ results/**/*.log
 results/**/*.tmp
 results/smoke-*/
 results/conf-*/
+# ad-hoc run outputs at the run-script default path (OUTPUT_PATH=results/<TASKS>);
+# curated delivery evidence lives ONLY under results/final/. This keeps a stray
+# LIMIT=N smoke or one-off full run from dirtying the tree / being committed.
+results/open_telco_*/
 
 # overnight orchestrator ephemera (keep results_*.json + _aggregate.json)
 results/final/_status.json

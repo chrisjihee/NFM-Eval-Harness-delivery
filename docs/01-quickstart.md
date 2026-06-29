@@ -78,9 +78,13 @@ python scripts/compare_gsma_leaderboard.py \
   --out-md outputs/gemma3-4b-otlite-gsma-delta.md
 ```
 
+- `--local-result`는 **전체 run(LIMIT 없이) 결과 JSON**이어야 한다. `LIMIT=N` smoke
+  결과를 주면 task당 표본이 너무 적어 acc가 0/1 noise가 되고 delta가 무의미하다
+  (이 경우 스크립트가 상단에 **BOUNDED/SMOKE 경고**를 출력한다).
 - 비교 기준은 **7-task unweighted task mean** vs public unweighted이다.
   sample-weighted group acc와 혼동하지 말 것.
-- 결과 JSON 경로 예: `results/otlite-gsma-gemma3-4b/results_*.json`
+- 결과 JSON 경로 예(3회 평균 정본): `results/final/otlite-gsma-gemma3-4b/run1/<model>/results_*.json`
+  (직접 full run 출력은 `results/open_telco_otlite_gsma/<model>/results_*.json`).
 
 sanity anchor: gemma-3-4b-it ot-lite_gsma `≈ 0.399` ≈ public `0.397`.
 

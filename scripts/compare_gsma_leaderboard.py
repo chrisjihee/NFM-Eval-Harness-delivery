@@ -216,6 +216,64 @@ def load_local_result(path: Path) -> dict[str, Any]:
     return data
 
 
+def bounded_run_warning(local: dict[str, Any]) -> Optional[str]:
+    """Return a warning banner if the local result looks like a bounded/smoke run.
+
+    A leaderboard comparison needs each task's full sample set. If the run used
+    ``LIMIT`` / ``--limit`` (``config.limit`` set) or ``n-samples`` shows truncation
+    (effective < original), per-task accuracy collapses toward 0/1 and every delta
+    is noise. Detect that and return a loud banner. Returns None for a full run.
+    """
+    config = local.get("config", {})
+    limit = config.get("limit") if isinstance(config, dict) else None
+    nsamples = local.get("n-samples", {})
+    if not isinstance(nsamples, dict):
+        nsamples = {}
+
+    truncated: list[tuple[str, int, int]] = []
+    min_eff: Optional[float] = None
+    for task, counts in nsamples.items():
+        if not isinstance(counts, dict):
+            continue
+        eff = counts.get("effective")
+        orig = counts.get("original")
+        if isinstance(eff, (int, float)) and not isinstance(eff, bool):
+            min_eff = eff if min_eff is None else min(min_eff, eff)
+            if isinstance(orig, (int, float)) and not isinstance(orig, bool) and eff < orig:
+                truncated.append((task, int(eff), int(orig)))
+
+    looks_bounded = limit is not None or bool(truncated)
+    if not looks_bounded and isinstance(min_eff, (int, float)) and min_eff < 30:
+        looks_bounded = True
+    if not looks_bounded:
+        return None
+
+    details: list[str] = []
+    if limit is not None:
+        details.append(f"  config.limit           : {limit}")
+    if min_eff is not None:
+        details.append(f"  min effective samples  : {int(min_eff)} per task")
+    if truncated:
+        shown = ", ".join(
+            f"{t.split('open_telco_')[-1]} {e}/{o}" for t, e, o in truncated[:4]
+        )
+        more = "" if len(truncated) <= 4 else f" (+{len(truncated) - 4} more)"
+        details.append(f"  truncated tasks        : {shown}{more}")
+
+    bar = "=" * 80
+    return (
+        f"{bar}\n"
+        "WARNING: this local result looks like a BOUNDED/SMOKE run (LIMIT set), NOT a\n"
+        "full evaluation. With so few samples each task accuracy is 0/1 noise, so the\n"
+        "per-task deltas and aggregates below are MEANINGLESS.\n"
+        + ("\n".join(details) + "\n" if details else "")
+        + "Re-run a FULL evaluation (omit LIMIT) and compare that result, e.g.:\n"
+        "  CONFIRM_FULL_RUN=1 MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otlite.sh\n"
+        "or point --local-result at a full-run JSON (e.g. one under results/).\n"
+        f"{bar}"
+    )
+
+
 def detect_track(local: dict[str, Any]) -> str:
     """Detect 'ot-full' or 'ot-lite' from the result JSON task names.
 
@@ -892,6 +950,9 @@ def main(argv: Optional[list[str]] = None) -> int:
     args = parse_args(argv)
     try:
         local = load_local_result(args.local_result)
+        warning = bounded_run_warning(local)
+        if warning:
+            _eprint(warning)
 
         track = detect_track(local) if args.track == "auto" else args.track
         mapping = dict(get_mapping(track, args.profile))
@@ -923,6 +984,8 @@ def main(argv: Optional[list[str]] = None) -> int:
             stdout_text = render_stdout(
                 track, args.model, public_source, table, aggregates
             )
+        if warning:
+            stdout_text = f"{warning}\n\n{stdout_text}"
         print(stdout_text)
 
         if args.out_md is not None:
@@ -934,6 +997,8 @@ def main(argv: Optional[list[str]] = None) -> int:
                 md_text = render_markdown(
                     track, args.model, public_source, table, aggregates
                 )
+            if warning:
+                md_text = f"```text\n{warning}\n```\n\n{md_text}"
             args.out_md.parent.mkdir(parents=True, exist_ok=True)
             args.out_md.write_text(md_text, encoding="utf-8")
             _eprint(f"Wrote Markdown: {args.out_md}")

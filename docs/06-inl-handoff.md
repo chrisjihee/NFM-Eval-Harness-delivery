@@ -76,7 +76,7 @@ CONFIRM_FULL_RUN=1 VLLM_VISIBLE_DEVICES=0 \
 
 ## 5. 결과 비교
 
-비교 기준은 **7-task unweighted task mean** (sample-weighted 아님):
+비교 기준은 **7-task unweighted task mean** (sample-weighted 아님). `--local-result`는 **전체 run 결과 JSON**이어야 한다(LIMIT=1 smoke 결과는 task당 1샘플 → 0/1 noise → delta 무의미; 스크립트가 BOUNDED/SMOKE 경고를 출력한다). 3회 평균 정본은 `results/final/`:
 
 ```bash
 python scripts/compare_gsma_leaderboard.py \
