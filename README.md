@@ -106,8 +106,8 @@ python scripts/compare_gsma_leaderboard.py --profile gsma --model gemma3-4b \
 
 ## 라이선스
 
-라이선스는 현재 **TBD**입니다. 사용 범위·third-party·미포함 항목은 [USAGE_SCOPE.md](USAGE_SCOPE.md),
-릴리스/라이선스 posture는 [docs/07-release-notes.md](docs/07-release-notes.md) 참조.
+라이선스는 현재 **TBD**입니다. 릴리스·라이선스 posture와 third-party 컴포넌트 안내는
+[docs/07-release-notes.md](docs/07-release-notes.md), 사용 범위는 아래 **범위** 절을 참조하세요.
 
 ## 범위
 

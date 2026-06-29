@@ -80,7 +80,7 @@ GSMA Open Telco 평가 하네스의 slim 문서 중심 전달본이다.
 별도 라이선스 결정 전까지 재배포 라이선스를 부여하지 않는다.
 
 포함된 third-party 컴포넌트(`lm-evaluation-harness`, `gsma-evals`)는 각자 고유 라이선스를 따른다.  
-사용 전 해당 저장소의 라이선스 조건을 확인한다. 사용 범위 전체는 `USAGE_SCOPE.md` 참조.
+사용 전 해당 저장소의 라이선스 조건을 확인한다. 사용 범위(범위 밖: 멀티모달/LMM/LAM, Planning, RAG, 한국어 QA 등 2차 과제)는 `docs/00-overview.md` 및 `README.md`의 범위 절을 참조한다.
 
 ---
 

@@ -2,6 +2,11 @@
 
 INL 전달본(delivery repo) 최종 polish를 위한 read-only audit 결과. (PASS 8, 2026-06-29)
 
+> **이후 변경(2026-06-29):** 본 문서가 "신규 생성"으로 기록한 root 전달 메타 문서
+> (`DELIVERY_PACKAGE.md` / `HANDOFF.md` / `PACKAGING_CHECKLIST.md` / `RESULTS_MANIFEST.md` /
+> `USAGE_SCOPE.md`)는 이후 slim화 과정에서 **제거**되었다(핵심 내용은 `docs/04`·`docs/06`·
+> `docs/07`·`docs/08` 및 `README.md`에 통합). 아래 표의 해당 항목은 PASS 8 시점의 역사적 기록이다.
+
 ## 1. Audit scope
 - engineering source repo: `~/code/NFM-Eval-Harness` (provenance, 수정 금지)
 - handoff delivery repo: `~/code/NFM-Eval-Harness-delivery` (정본, 최소 침습 수정 대상)
