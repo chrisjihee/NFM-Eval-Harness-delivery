@@ -92,7 +92,7 @@ make smoke    # GPU 없이 task YAML 로딩 검증 — green이면 설치 정상
 | `LIMIT` | (미설정) | 샘플 수 상한 (smoke용; 생략 시 전체) |
 | `CONFIRM_FULL_RUN` | (미설정) | `1`로 설정해야 전체 run 허용 |
 | `EXTRA_MODEL_ARGS` | (미설정) | vLLM 추가 인자 (아래 참조) |
-| `TELETABLES_ROOT` | (미설정) | TeleTables 원본 표 경로 (미설정 시 metadata-only) |
+| `TELETABLES_ROOT` | (미설정) | legacy/superset 표 원본 경로. 기본 `_gsma`는 question+choices parity라 불필요; 미설정 시 legacy task만 metadata-only |
 
 ### 모델별 권장 EXTRA_MODEL_ARGS
 

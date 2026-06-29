@@ -30,7 +30,7 @@
 5. GSMA alignment 과정: 공개 scoring contract에 scorer 정렬(telemath isclose 0.01 / telelogs soft first-int / 3gpp WG regex). "공식 완전 재현 아님" 명시.
 6. 핵심 진단 — 격차의 정직한 분해: local group acc(sample-weighted) vs public(unweighted) **집계방식 정정**, 동일기준 비교 시 격차의 거의 전부가 **scoring 방식 + 집계 차이**. MC 미정렬이 지배 동인.
 7. MC scoring: loglikelihood→generation 후 추출 시 public에 근접(단, 공식 추출 방식 UNKNOWN → `_mcgen` 비-default 유지, "공식 정렬" 주장 아님).
-8. truncation / parser / TeleTables 해석 정정: 생성형 저점수는 truncation이 아니었음; parser robust화; TeleTables `_gsma`=question-only=GSMA parity(저평가 아님).
+8. truncation / parser / TeleTables 해석 정정: 생성형 저점수는 truncation이 아니었음; parser robust화; TeleTables `_gsma`=question+choices=GSMA parity(저평가 아님).
 9. legacy → gsma 정리: 이름 규칙(`_gsma` 기본화, legacy `_lm_eval_baseline`, bare name fail-fast)과 그 이유(처음 보는 사람 혼동 방지).
 10. 모델 validation 결과(이전 패스): leaderboard 동일 split 재현(비-gemma3 계열이 public에 근접), reasoning/harmony 모델은 단답 MC와 비호환=artifact.
 11. **final rerun 결과(2026-06-29)**: 10개 모델 × {ot-lite_gsma, ot-full_gsma} × **3회 반복 평균(mean±표준편차)**. 수치는 아래 **§final rerun 실제 결과 데이터** 표를 그대로 사용. leaderboard 모델은 public delta 병기.

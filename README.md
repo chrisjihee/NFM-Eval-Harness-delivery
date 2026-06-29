@@ -1,9 +1,10 @@
 # NFM-Eval-Harness-delivery
 
-INL(지능네트워크연구실) 전달용 **slim handoff** 저장소입니다. EleutherAI
-`lm-evaluation-harness` 기반으로 GSMA Open Telco 7개 통신 도메인 task를 실행하는
-경량 평가 harness이며, NFM-LLM 후보 모델의 상대 비교와 public leaderboard 근접
-검증을 목적으로 합니다.
+INL(지능네트워크연구실) 전달용 **slim handoff** 저장소이며, 비저자(INL)를 위한
+**권장 시작점(정본)**입니다. EleutherAI `lm-evaluation-harness` 기반으로 GSMA Open Telco
+7개 통신 도메인 task를 실행하는 경량 평가 harness이며, NFM-LLM 후보 모델의 상대 비교와
+public leaderboard 근접 검증을 목적으로 합니다.
+(engineering/provenance 저장소는 `NFM-Eval-Harness`이며, 상세 개발 이력이 필요할 때만 참조합니다.)
 
 > 이 저장소는 공식 GSMA stack(Inspect AI 기반)의 완전 재현이 **아닙니다**.
 > 기본 `_gsma` profile은 GSMA **공개 scoring contract에 정렬**된 profile이며,
@@ -25,12 +26,25 @@ LIMIT=1 MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otlite.sh
 # 3) 대표 full run (기본 task = open_telco_otlite_gsma)
 CONFIRM_FULL_RUN=1 MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otlite.sh
 
-# 4) 전달 readiness 점검(문서/secret/용량/tree/링크)
+# 4) 전달 readiness 점검 + 단위테스트 + 비교 스크립트 (= 30분 acceptance test)
 make delivery-check
+pytest -q
+python scripts/compare_gsma_leaderboard.py --help
+
+# 5) (선택) vLLM 경로 smoke
+LIMIT=1 BACKEND=vllm VLLM_VISIBLE_DEVICES=0 MAX_MODEL_LEN=8192 \
+  GPU_MEMORY_UTILIZATION=0.9 EXTRA_MODEL_ARGS=enforce_eager=True \
+  MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otlite.sh
 ```
+
+위 0)~4) 블록이 곧 **30분 acceptance test**입니다(설치 후 모두 green이면 정상 인수 가능).
 
 자세한 설치·실행은 [docs/01-quickstart.md](docs/01-quickstart.md),
 인수자 가이드는 [docs/06-inl-handoff.md](docs/06-inl-handoff.md)를 보세요.
+
+최종 결과(10모델 × 2 profile × 3회 평균, 60 result JSON + 20 `_aggregate.json`)는
+**`results/final/`**에 있으며, 표·분석은 [docs/04-final-results.md](docs/04-final-results.md),
+산출물 매니페스트는 [docs/08-results-manifest.md](docs/08-results-manifest.md)입니다.
 
 ## 기본 profile = `_gsma`
 
@@ -90,7 +104,8 @@ python scripts/compare_gsma_leaderboard.py --profile gsma --model gemma3-4b \
 ## 라이선스
 
 라이선스는 현재 **TBD**입니다(원본 engineering-source 저장소와 동일하게 명시 라이선스 없음;
-INL 내부 사용 기준). 상세는 [docs/07-release-notes.md](docs/07-release-notes.md).
+INL 내부 사용 기준). 사용 범위·third-party·미포함 항목은 [USAGE_SCOPE.md](USAGE_SCOPE.md),
+릴리스/라이선스 posture는 [docs/07-release-notes.md](docs/07-release-notes.md) 참조.
 
 ## 범위
 

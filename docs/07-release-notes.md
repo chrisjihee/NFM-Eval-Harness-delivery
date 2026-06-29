@@ -17,7 +17,7 @@ GSMA Open Telco 평가 하네스의 slim 문서 중심 전달본이다.
 - **스크립트 5종**: `run_open_telco_otlite.sh`, `run_open_telco_otfull.sh`, `setup-pre.sh`, `setup-main.sh`, `setup-post.sh`, `scripts/aggregate_repeats.py`.
 - **테스트 3종**: `tests/` 아래 parser·smoke·결과 정합성 검증.
 - **results/final/** 디렉터리 구조: 10개 후보 모델 × `{otlite,otfull}-gsma` × run{1,2,3}/ 폴더 + `_aggregate.json`.  
-  fresh rerun(3회 반복, mean±spread)을 수행한 후 `docs/04-final-results.md`와 함께 채워진다.
+  fresh rerun(3회 반복, mean±spread) **완료(2026-06-29)** — 60 result JSON + 20 `_aggregate.json`, 0 실패. 수치는 `docs/04-final-results.md`.
 
 ### Changed
 
@@ -37,7 +37,7 @@ GSMA Open Telco 평가 하네스의 slim 문서 중심 전달본이다.
 - **공식 GSMA stack 완전 재현 아님**: 공식은 Inspect AI 기반, 이 하네스는 lm-eval 기반. 동일 점수 재현은 목표가 아니다.
 - **MC engine 미정렬**: MC 4종은 자유 single-letter `generate_until` 방식(`max_gen_toks:8`)이며, 공식의 제약 디코딩(`multiple_choice(cot=False)`)과 다르다. 이 차이가 가장 큰 점수 격차 요인이다.
 - **reasoning/harmony 모델 비호환**: enable_thinking 미해제·단답 출력 미조정 상태의 reasoning 모델은 MC engine collapse가 artifact이므로 비교에서 제외한다.
-- **teletables `TELETABLES_ROOT` 미설정 시 degraded**: run 스크립트가 자동 export하지 않으므로 표 원본이 필요할 경우 별도 설정 필요.
+- **teletables**: 기본 `_gsma` profile은 question+choices를 제공해 평가하므로 GSMA parity이며 저평가가 아니다. legacy/superset 표 원본이 필요한 경우에만 `TELETABLES_ROOT`를 설정한다(기본 전달 경로엔 불필요).
 
 ### Not Included
 
@@ -60,4 +60,17 @@ GSMA Open Telco 평가 하네스의 slim 문서 중심 전달본이다.
 별도 라이선스 결정 전까지 재배포 라이선스를 부여하지 않는다.
 
 포함된 third-party 컴포넌트(`lm-evaluation-harness`, `gsma-evals`)는 각자 고유 라이선스를 따른다.  
-사용 전 해당 저장소의 라이선스 조건을 확인한다.
+사용 전 해당 저장소의 라이선스 조건을 확인한다. 사용 범위 전체는 `USAGE_SCOPE.md` 참조.
+
+---
+
+## Release tag preparation
+
+저장소 소유자는 아래 명령으로 handoff 태그를 생성할 수 있다(자동 실행하지 않음):
+
+```bash
+git tag -a v0.1-inl-handoff-2026-06-29 -m "INL handoff package"
+git push origin v0.1-inl-handoff-2026-06-29
+```
+
+Do not run this automatically — 소유자가 최종 확인 후 직접 실행한다.
