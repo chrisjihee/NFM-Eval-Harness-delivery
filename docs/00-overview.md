@@ -1,13 +1,10 @@
 # NFM-Eval-Harness 개요
 
-> **provenance**: 원본 저장소 `NFM-Eval-Harness` 기준 slim화 전달본(정확한 engineering HEAD는 인수 시점 원본 repo 확인).
-
 ---
 
 ## 저장소 정체성과 목적
 
-이 저장소는 ETRI Language Intelligence Lab이 관리하는
-**내부 NFM-LLM baseline harness**이다. EleutherAI **lm-evaluation-harness**를
+이 저장소는 EleutherAI **lm-evaluation-harness**를
 기반으로 GSMA Open Telco AI 7개 통신 도메인 태스크를 실행한다.
 
 목적은 두 가지다.
@@ -16,7 +13,7 @@
    **상대 비교**하고 도메인 적응 효과를 측정한다.
 2. GSMA 공개 leaderboard 점수에 **가능한 한 근접**하여 harness 신뢰도를 확보한다.
 
-> **필독 — 정체성 한계.** 공식 GSMA leaderboard stack(Inspect AI 기반)의
+> **정체성 한계:** 공식 GSMA leaderboard stack(Inspect AI 기반)의
 > 완전 복제가 아니다. `_gsma` profile은 **GSMA 공개 scoring contract에
 > 정렬**된 비교용 profile이며, "공식 GSMA 완전 재현"을 주장하지 않는다.
 
@@ -73,7 +70,6 @@ gemma-3-4b-it ot-lite_gsma `0.3992` ≈ ot-full_gsma `0.3926` ≈ public `0.397`
 - MC 4종은 자유 generation engine으로 공식 제약 디코딩과 미정렬(지배적 격차 동인).
 - telelogs / 3gpp는 `\boxed{}` / WG token 미출력 시 soft scorer가 INCORRECT 처리 → 일부 모델 저점수는 형식-emission artifact(지식 격차 아님).
 - reasoning 모델(R1-Distill 등)의 MC collapse는 engine 비호환 artifact이며 능력치가 아니다.
-- license: 외부 배포 전 별도 결정 필요.
 
 ---
 

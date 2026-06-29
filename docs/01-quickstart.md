@@ -1,16 +1,15 @@
 # 빠른 시작 (5분)
 
-> **provenance**: 원본 저장소 `NFM-Eval-Harness` 기준 slim화 전달본(정확한 engineering HEAD는 인수 시점 원본 repo 확인).
-
 ---
 
 ## 1단계 — 환경 준비
 
 ```bash
-./setup-pre.sh && ./setup-main.sh && ./setup-post.sh
+./setup-pre.sh
+./setup-main.sh
+./setup-post.sh
 ```
 
-- lm-evaluation-harness를 pin SHA `97a5e2c7`로 clone하고 `.venv`를 구성한다.
 - GPU 서버에서 실행한다. 환경 핀(Python 3.12.13 / torch 2.11.0+cu128 / vLLM 0.23.0) 및
   재설치 SOP는 `docs/05-operations-and-troubleshooting.md` 참조.
 
