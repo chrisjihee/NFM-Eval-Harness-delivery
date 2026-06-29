@@ -1,6 +1,6 @@
-# INL Handoff
+# Handoff
 
-This repository is the curated handoff package for INL and is the **recommended
+This repository is the curated handoff package and is the **recommended
 starting point for non-author users**.
 
 Start here:
