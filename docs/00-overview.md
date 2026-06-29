@@ -53,8 +53,8 @@ run 스크립트가 fail-fast `exit 2`로 거부한다.
 **scoring 방식(loglikelihood→generation) + 집계(sample-weighted→unweighted)**
 차이로 설명된다.
 
-`_gsma` profile 기준 sanity anchor:
-gemma-3-4b-it ot-lite_gsma `0.3992` ≈ ot-full_gsma `0.3926` ≈ public `0.397`.
+`_gsma` profile 기준 sanity anchor (3회 평균; 정본 수치는 [docs/04-final-results.md](04-final-results.md)):
+gemma-3-4b-it ot-lite_gsma `0.3956` ≈ ot-full_gsma `0.3887` ≈ public `0.397`.
 
 남은 격차의 귀인은 미확정이며 단일 원인으로 단정하지 않는다. 가장 큰
 미정렬 축은 **MC 4종 engine** — 자유 single-letter generation vs 공식

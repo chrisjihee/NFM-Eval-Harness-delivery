@@ -13,8 +13,7 @@ source "${ROOT_DIR}/.venv/bin/activate"
 MODEL_NAME="${MODEL_NAME:-google/gemma-3-4b-it}"
 # Default backend = vllm: faster/more stable, and it does NOT left-truncate long
 # generation inputs the way the hf backend does (hf truncation can collapse
-# generation tasks such as telelogs to 0). Use BACKEND=hf for a lightweight
-# fallback.
+# generation tasks such as telelogs to 0). Use BACKEND=hf for a lightweight fallback.
 BACKEND="${BACKEND:-vllm}"
 DEVICE="${DEVICE:-cuda:0}"
 BATCH_SIZE="${BATCH_SIZE:-auto}"

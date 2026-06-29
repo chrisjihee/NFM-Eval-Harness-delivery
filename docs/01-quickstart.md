@@ -11,6 +11,8 @@
 - GPU 서버에서 실행한다. 환경 핀(Python 3.12.13 / torch 2.11.0+cu128 / vLLM 0.23.0 /
   lm_eval 0.4.12) 및 재설치 SOP는 `docs/05-operations-and-troubleshooting.md` 참조.
 - `setup-post.sh`가 lm_eval을 버전 고정으로 설치한다: `uv pip install "lm_eval[hf,vllm]==0.4.12"`.
+- 이후 문서의 `python` / `pytest` 예시는 **`.venv` 활성 상태**를 가정한다(`setup-post.sh`가 activate;
+  새 셸이면 `source .venv/bin/activate`, 또는 `.venv/bin/python` 직접 사용).
 
 ---
 
@@ -86,7 +88,7 @@ python scripts/compare_gsma_leaderboard.py \
 - 결과 JSON 경로 예(3회 평균 정본): `results/final/otlite-gsma-gemma3-4b/run1/<model>/results_*.json`
   (직접 full run 출력은 `results/open_telco_otlite_gsma/<model>/results_*.json`).
 
-sanity anchor: gemma-3-4b-it ot-lite_gsma `≈ 0.399` ≈ public `0.397`.
+sanity anchor: gemma-3-4b-it ot-lite_gsma `≈ 0.396` ≈ public `0.397` (정본: docs/04).
 
 ---
 

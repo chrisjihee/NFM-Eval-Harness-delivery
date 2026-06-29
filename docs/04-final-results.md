@@ -12,7 +12,7 @@
 ## 핵심 요약
 
 - **public leaderboard 비교는 동일 split인 ot-full_gsma 기준**이다(ot-lite는 다른 split이므로 public과 직접 비교하지 않는다).
-- **leaderboard 7개 모델 중 gemma3-12b를 제외한 6개의 |Δ(ot-full−public)| ≤ 0.021(평균 0.009)** 로 public을 근접 재현했다.
+- **leaderboard 7개 모델 중 gemma3-12b를 제외한 6개의 |Δ(ot-full−public)| ≤ 0.021(평균 0.009)** 로 public에 근접했다(공식 재현은 아님 — 방법론 차이는 §caveat 참조).
   reference anchor `gemma-3-4b-it` = ot-full **0.3887** vs public **0.397**(Δ −0.008).
 - **gemma3-12b만 Δ −0.037**로 큰데, 이는 telemath/telelogs에서 `\boxed{}`/라벨 emission이 취약해(긴 생성으로 이어짐) 생성형 점수가 낮기 때문이다(능력 저하가 아니라 emission 특성; [03](03-gsma-alignment-and-caveats.md) 참조).
 - **이것은 공식 GSMA stack(Inspect AI) 재현이 아니다.** 특히 MC 4종은 자유 generation engine으로 공식 제약 디코딩과 **미정렬**이다 — delta가 작아도 "공식 재현"으로 해석하지 않는다.

@@ -34,7 +34,7 @@ GSMA Open Telco 평가 하네스의 slim 문서 중심 전달본이다.
 ### Added
 
 - **slim 문서 체계** (`docs/00`–`08`): 개요·퀵스타트·프로파일·정렬 분석·최종 결과·운영·INL 핸드오프·릴리스 노트·결과 매니페스트.
-- **스크립트 5종**: `run_open_telco_otlite.sh`, `run_open_telco_otfull.sh`, `setup-pre.sh`, `setup-main.sh`, `setup-post.sh`, `scripts/aggregate_repeats.py`.
+- **스크립트 6종**: `run_open_telco_otlite.sh`, `run_open_telco_otfull.sh`, `setup-pre.sh`, `setup-main.sh`, `setup-post.sh`, `scripts/aggregate_repeats.py`.
 - **테스트 3종**: `tests/` 아래 parser·smoke·결과 정합성 검증.
 - **results/final/** 디렉터리 구조: 10개 후보 모델 × `{otlite,otfull}-gsma` × run{1,2,3}/ 폴더 + `_aggregate.json`.  
   fresh rerun(3회 반복, mean±spread) **완료(2026-06-29)** — 60 result JSON + 20 `_aggregate.json`, 0 실패. 수치는 `docs/04-final-results.md`.

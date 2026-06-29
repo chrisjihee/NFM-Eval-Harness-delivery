@@ -123,7 +123,7 @@ MAX_MODEL_LEN=8192 \
 GPU_MEMORY_UTILIZATION=0.9 \
 EXTRA_MODEL_ARGS="enable_thinking=False" \
 CONFIRM_FULL_RUN=1 \
-MODEL_NAME=Qwen/Qwen3-32B-Instruct \
+MODEL_NAME=Qwen/Qwen3-32B \
 ./run_open_telco_otlite.sh
 
 # Mistral-7B

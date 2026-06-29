@@ -34,9 +34,10 @@ CONFIRM_FULL_RUN=1 VLLM_VISIBLE_DEVICES=0 EXTRA_MODEL_ARGS=enforce_eager=True \
 CONFIRM_FULL_RUN=1 BACKEND=hf MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otlite.sh
 
 # 4) 전달 readiness 점검 + 단위테스트 + 비교 스크립트
+#    (.venv 미활성 상태에서도 안전하도록 .venv/bin 경로를 직접 사용)
 make delivery-check
-pytest -q
-python scripts/compare_gsma_leaderboard.py --help
+.venv/bin/python -m pytest -q
+.venv/bin/python scripts/compare_gsma_leaderboard.py --help
 ```
 
 자세한 설치·실행은 [docs/01-quickstart.md](docs/01-quickstart.md),
