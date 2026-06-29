@@ -11,7 +11,11 @@ fi
 source "${ROOT_DIR}/.venv/bin/activate"
 
 MODEL_NAME="${MODEL_NAME:-google/gemma-3-4b-it}"
-BACKEND="${BACKEND:-hf}"
+# Default backend = vllm: faster/more stable, and it does NOT left-truncate long
+# generation inputs the way the hf backend does (hf truncation can collapse
+# generation tasks such as telelogs to 0). Use BACKEND=hf for a lightweight
+# fallback.
+BACKEND="${BACKEND:-vllm}"
 DEVICE="${DEVICE:-cuda:0}"
 BATCH_SIZE="${BATCH_SIZE:-auto}"
 TASKS="${TASKS:-open_telco_otfull_gsma}"
@@ -27,10 +31,15 @@ fi
 DTYPE="${DTYPE:-bfloat16}"
 TENSOR_PARALLEL_SIZE="${TENSOR_PARALLEL_SIZE:-1}"
 DATA_PARALLEL_SIZE="${DATA_PARALLEL_SIZE:-1}"
-GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-0.7}"
-MAX_MODEL_LEN="${MAX_MODEL_LEN:-}"
-# Opt-in hf-backend context cap; unset by default (no behavior change). vllm
-# uses MAX_MODEL_LEN above.
+GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-0.9}"
+# Default vllm context cap = 8192: the bundled ot-lite/ot-full prompts stay under
+# 8192 tokens, so this does not affect scores, and it prevents a 128K-context
+# model from over-allocating the KV cache (OOM on A100 40GB). Override as needed.
+MAX_MODEL_LEN="${MAX_MODEL_LEN:-8192}"
+# Opt-in hf-backend context cap; the hf backend uses MAX_LENGTH (not MAX_MODEL_LEN).
+# Unset by default. NOTE: the hf backend left-truncates long generation inputs,
+# which can collapse generation tasks (e.g. telelogs) — prefer the default vllm
+# backend for faithful scoring.
 MAX_LENGTH="${MAX_LENGTH:-}"
 VLLM_VISIBLE_DEVICES="${VLLM_VISIBLE_DEVICES:-${CUDA_VISIBLE_DEVICES:-}}"
 LIMIT="${LIMIT:-}"

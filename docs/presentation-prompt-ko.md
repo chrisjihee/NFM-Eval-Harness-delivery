@@ -35,7 +35,7 @@
 10. 모델 validation 결과(이전 패스): leaderboard 동일 split 재현(비-gemma3 계열이 public에 근접), reasoning/harmony 모델은 단답 MC와 비호환=artifact.
 11. **final rerun 결과(2026-06-29)**: 10개 모델 × {ot-lite_gsma, ot-full_gsma} × **3회 반복 평균(mean±표준편차)**. 수치는 아래 **§final rerun 실제 결과 데이터** 표를 그대로 사용. leaderboard 모델은 public delta 병기.
 12. 남은 한계: 공식 GSMA 완전 재현 아님(MC engine 미정렬이 최대 축), model-variant 불일치 가능성, 생성형 emission 취약 모델.
-13. 환경/재현성: 하드핀(torch/vllm/transformers), lm-eval pinned SHA + gsma-evals clone, host-env(VM/NCCL/offline) recipe, smoke→full→비교 절차.
+13. 환경/재현성: 하드핀(torch/vllm/transformers), lm_eval 버전 고정 설치(pip `0.4.12`) + (선택)gsma-evals 참조, 기본 backend=vLLM, host-env(VM/NCCL/offline) recipe, smoke→full→비교 절차.
 14. INL가 받아서 할 일: setup→smoke→대표 full run→compare; 신규 모델 추가 절차(smoke 게이트→ot-lite→ot-full); 무결성 원칙(정답 누수/과적합 금지).
 15. 마무리: 결론(harness 신뢰도 + 정직한 격차 분해) + 다음 단계(필요 시 후속 task 확장은 2차 과제).
 

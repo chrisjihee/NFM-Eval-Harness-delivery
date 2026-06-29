@@ -27,7 +27,7 @@ fi
 source "${ROOT_DIR}/.venv/bin/activate"
 
 if ! python -c "import lm_eval" >/dev/null 2>&1; then
-  echo "lm_eval not installed in .venv. Install: uv pip install -e ./lm-evaluation-harness --no-deps" >&2
+  echo "lm_eval not installed in .venv. Install: uv pip install \"lm_eval[hf,vllm]==0.4.12\" (or run ./setup-post.sh)" >&2
   exit 3
 fi
 

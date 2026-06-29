@@ -1,11 +1,14 @@
 # NFM-Eval-Harness-delivery — slim INL handoff repo .gitignore
-# Heavy third-party deps and the venv are NOT vendored: setup-*.sh clones/installs
-# them (lm-eval pinned SHA 97a5e2c7, gsma-evals). Tonight they are symlinked from the
-# engineering-source repo (gitignored, never committed).
+# The venv and third-party components are NOT vendored. setup-*.sh reproduces them:
+# lm_eval is installed via pip (uv pip install "lm_eval[hf,vllm]==0.4.12"); gsma-evals
+# is an optional reference clone (not a runtime dependency). On the build host .venv
+# (and any optional reference clones) may be symlinks from the engineering-source repo.
 
-# venv + cloned third-party harnesses (symlinked tonight; setup-*.sh reproduces).
-# No trailing slash: these are symlinks tonight (not dirs), so a trailing-slash
-# pattern would NOT match them and they would get tracked. Match both symlink + dir.
+# venv + optional third-party reference clones (gitignored; never committed).
+# No trailing slash: these may be symlinks (not dirs), so a trailing-slash pattern
+# would NOT match them and they would get tracked. Match both symlink + dir.
+# lm-evaluation-harness is kept as a harmless guard in case it is cloned for source
+# reference; the runtime install is via pip, so it is normally absent.
 .venv
 lm-evaluation-harness
 gsma-evals

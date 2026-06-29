@@ -111,11 +111,15 @@ Run the 7-task `ot-full` pack (defaults to `open_telco_otfull_gsma`):
 ./run_open_telco_otfull.sh
 ```
 
-Override the backend or model if needed:
+The default backend is vLLM. Override the GPUs or model if needed:
 
 ```bash
-BACKEND=vllm VLLM_VISIBLE_DEVICES=3 MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otfull.sh
+VLLM_VISIBLE_DEVICES=3 MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otfull.sh
 ```
+
+`BACKEND=hf` selects the lightweight HF fallback, which left-truncates long
+generation inputs (this can collapse generation tasks such as telelogs) — prefer
+the default vLLM backend for faithful scoring.
 
 Note: bare `open_telco_otlite` / `open_telco_otfull` are non-runnable; the run scripts
 fail-fast (`exit 2`) and direct you to `_gsma` or `_lm_eval_baseline`.

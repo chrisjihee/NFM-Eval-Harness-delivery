@@ -13,7 +13,7 @@
 | PyTorch | 2.11.0+cu128 (CUDA 12.8 wheel) |
 | transformers | 5.12.1 |
 | vLLM | 0.23.0 |
-| lm-evaluation-harness pin SHA | `97a5e2c7` (`v0.4.12-12-g97a5e2c7`) |
+| lm-evaluation-harness (lm_eval) | `0.4.12` (PyPI; `uv pip install "lm_eval[hf,vllm]==0.4.12"`) |
 | GPU | A100 40 GB × 6 |
 | OS | Linux (GPU 서버) |
 | 가상환경 관리 | `uv` / `.venv` |
@@ -28,32 +28,42 @@
 # GPU 서버 루트 디렉터리에서 순서대로 실행
 ./setup-pre.sh    # OS-level 의존성, uv 설치 여부 확인
 ./setup-main.sh   # .venv 생성, pyproject.toml 의존성 설치, vLLM runtime 검증
-./setup-post.sh   # gsma-evals 클론, lm-eval pin 설치, post-setup 검증
+./setup-post.sh   # lm_eval 버전 고정 pip 설치, (선택) gsma-evals 참조 클론
 ```
 
-### lm-evaluation-harness 설치 상세
+### lm-evaluation-harness(lm_eval) 설치 상세
 
-`setup-post.sh`는 내부적으로 아래를 수행한다:
+`setup-post.sh`는 lm_eval을 PyPI에서 버전 고정으로 설치한다:
 
 ```bash
-# lm-eval은 --no-deps로 설치 — torch/vllm/transformers 핀이 덮이지 않도록
-uv pip install -e ./lm-evaluation-harness --no-deps
-# pyproject.toml이 제공하지 않는 lm-eval core 경량 의존성 6종 추가 설치
-uv pip install sqlitedict sacrebleu pytablewriter word2number more_itertools rouge-score
+uv pip install "lm_eval[hf,vllm]==0.4.12"
 ```
 
-lm-eval이 설치되었는지 확인:
+- `[hf,vllm]` extra가 hf·vllm 백엔드와 lm_eval 보조 의존성(sqlitedict, sacrebleu,
+  pytablewriter, word2number, more_itertools, rouge-score)을 함께 설치한다 →
+  별도 수동 설치 불필요.
+- `setup-main.sh`가 먼저 torch/vllm/transformers 하드핀을 설치하므로, 이 명령은
+  이미 만족된 핀을 변경하지 않는다(uv는 만족된 의존성을 다운그레이드하지 않음).
+- 과거 engineering 트랙은 git clone 후 `-e ./lm-evaluation-harness --no-deps`로
+  설치하고 SHA `97a5e2c7`(= `v0.4.12` 태그 +12 commits)를 핀했다. 전달본은 재현
+  단순화를 위해 PyPI release `0.4.12`를 사용한다(대상 task 점수는 run-to-run 변동
+  범위 내에서 동일하다).
+
+lm_eval이 설치되었는지 확인:
 
 ```bash
-.venv/bin/python -c "import lm_eval; print(lm_eval.__version__)"
-# 또는
-.venv/bin/python -c "import lm_eval" || uv pip install -e ./lm-evaluation-harness --no-deps
+.venv/bin/python -c "import lm_eval; print(lm_eval.__version__)"   # 0.4.12
+# 미설치 시
+.venv/bin/python -c "import lm_eval" || uv pip install "lm_eval[hf,vllm]==0.4.12"
 ```
 
-### gsma-evals 클론
+### gsma-evals (선택, 참조 전용)
 
-`setup-post.sh`가 `gsma-evals/` 하위에 공식 GSMA scorer repo를 클론한다.
-수동으로 편집하지 않는다(scorer 정렬 기준점이므로 원본 유지).
+`setup-post.sh`가 `gsma-evals/` 하위에 공식 GSMA scorer repo를 선택적으로 클론한다.
+이는 **런타임 의존성이 아니다** — `*_gsma` scorer 로직은 이미
+`open_telco_lm_eval/tasks/**/utils.py`에 미러링되어 있고 task는 `--include_path`로
+로드된다. gsma-evals는 공식 scorer 소스를 대조·확인하려는 경우에만 두며, 수동으로
+편집하지 않는다(정렬 기준점이므로 원본 유지).
 
 ---
 
@@ -68,9 +78,9 @@ make smoke    # GPU 없이 task YAML 로딩 검증 — green이면 설치 정상
 
 `make smoke` green = lm-eval 설치 + task YAML 파싱 + 의존성 import 모두 정상.
 
-> **검증 완료(2026-06-28)**: 공개 저장소를 빈 디렉터리에 새로 clone → fresh `.venv`
-> 생성 → `uv pip install -e .` → `setup-post.sh`의 lm-eval `--no-deps` + 보조 6종 설치
-> → `make smoke`가 `OK: all requested tasks/groups loaded`로 통과함을 확인했다(생성된
+> **검증(2026-06-29 설치 방식 갱신)**: 빈 디렉터리에 새로 clone → fresh `.venv` 생성 →
+> `uv pip install -e .` → `setup-post.sh`의 `uv pip install "lm_eval[hf,vllm]==0.4.12"`
+> → `make smoke`가 `OK: all requested tasks/groups loaded`로 통과한다(생성된
 > `.venv/bin/activate`의 `VIRTUAL_ENV`가 새 clone 경로를 가리킴 = 정상 relocatable).
 > 즉 symlink 없는 from-scratch 경로가 동작함이 검증되었다.
 
@@ -81,12 +91,12 @@ make smoke    # GPU 없이 task YAML 로딩 검증 — green이면 설치 정상
 | 환경변수 | 기본값 | 설명 |
 |---|---|---|
 | `MODEL_NAME` | (필수) | HuggingFace 모델 식별자 (예: `google/gemma-3-4b-it`) |
-| `BACKEND` | `hf` | `hf` 또는 `vllm` |
+| `BACKEND` | `vllm` | `vllm`(기본/권장) 또는 `hf`(경량/대체; 긴 입력 left-truncation) |
 | `DEVICE` | `cuda:0` | HF 백엔드 디바이스 |
 | `BATCH_SIZE` | `auto` | HF 백엔드 배치 크기 |
 | `VLLM_VISIBLE_DEVICES` | `0` | vLLM용 CUDA_VISIBLE_DEVICES |
-| `GPU_MEMORY_UTILIZATION` | `0.85` | vLLM KV 캐시 메모리 비율 (권장 0.9) |
-| `MAX_MODEL_LEN` | (미설정) | vLLM 컨텍스트 길이 제한 (128K 모델은 8192 권장) |
+| `GPU_MEMORY_UTILIZATION` | `0.9` | vLLM KV 캐시 메모리 비율 |
+| `MAX_MODEL_LEN` | `8192` | vLLM 컨텍스트 길이 제한 (기본 8192; bundled task는 8192 미만이라 점수 영향 없음) |
 | `TENSOR_PARALLEL_SIZE` | `1` | vLLM TP; 24–33B 모델은 `2` 사용 |
 | `TASKS` | `open_telco_otlite_gsma` | 실행할 task 그룹 (생략 시 기본값 `_gsma`) |
 | `LIMIT` | (미설정) | 샘플 수 상한 (smoke용; 생략 시 전체) |
@@ -232,7 +242,7 @@ export TELETABLES_ROOT=/path/to/extracted/TeleTables/tables
 
 ```bash
 # HF 백엔드
-BATCH_SIZE=1 MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otlite.sh
+BACKEND=hf BATCH_SIZE=1 MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otlite.sh
 
 # vLLM 백엔드
 BACKEND=vllm GPU_MEMORY_UTILIZATION=0.5 MAX_MODEL_LEN=4096 \

@@ -1,5 +1,25 @@
 # 07 릴리스 노트
 
+## v0.1.1 — 설치/런타임 정리 (2026-06-29)
+
+### Changed
+
+- **lm_eval 설치 방식**: git clone 후 editable(`-e --no-deps`) 설치 + 보조 6종 수동
+  설치에서, PyPI 버전 고정 설치 `uv pip install "lm_eval[hf,vllm]==0.4.12"`로 전환했다.
+  `[hf,vllm]` extra가 hf·vllm 백엔드와 lm_eval 보조 의존성을 함께 설치한다.
+  lm-evaluation-harness git clone은 더 이상 수행하지 않는다(redundant). gsma-evals
+  clone은 선택적 참조 전용으로 유지한다(런타임 의존성 아님 — scorer는 utils.py에 미러링).
+- **기본 backend = vLLM**: `run_open_telco_*.sh`의 기본 backend를 `hf` → `vllm`로
+  변경하고, vLLM 기본값으로 `MAX_MODEL_LEN=8192`·`GPU_MEMORY_UTILIZATION=0.9`를 적용했다.
+  HF backend는 긴 생성형 입력을 left-truncation 하여 telelogs 등 생성형 task가 0점으로
+  collapse할 수 있으므로(예: gemma-3-4b-it ot-lite_gsma에서 HF telelogs 0.0 vs vLLM 0.12)
+  경량/대체 경로(`BACKEND=hf`)로 남긴다.
+
+> 참고: `results/final/`의 수치는 동일 release(0.4.12) 계열 vLLM 측정값이며, PyPI
+> 0.4.12 재실행 결과는 run-to-run 변동 범위 내에서 일치한다(수치: `docs/04-final-results.md`).
+
+---
+
 ## v0.1-inl-delivery — slim 전달 저장소 초판 (2026-06-28)
 
 이 저장소(`NFM-Eval-Harness-delivery`)는 EleutherAI lm-evaluation-harness 기반  
@@ -48,8 +68,8 @@ GSMA Open Telco 평가 하네스의 slim 문서 중심 전달본이다.
 ### Reproducibility
 
 - 환경 핀: Python 3.12.13, torch 2.11.0+cu128, transformers 5.12.1, vllm 0.23.0.
-- lm-evaluation-harness: `97a5e2c7`(`97a5e2c710e2b56b9dd48f367bb6fe87bbb2c176`) pin 고정. `setup-post.sh`가 clone·설치.
-- gsma-evals: `gsma-labs/evals` — `setup-post.sh`가 clone. 임의 수정 금지.
+- lm_eval: PyPI release `0.4.12` 고정 — `setup-post.sh`의 `uv pip install "lm_eval[hf,vllm]==0.4.12"`. (과거 engineering 트랙은 git clone + SHA `97a5e2c7` = `v0.4.12`+12 commits를 핀했으나, 전달본은 재현 단순화를 위해 PyPI release를 사용한다.)
+- gsma-evals: `gsma-labs/evals` — (선택) `setup-post.sh`가 참조용 clone. 런타임 의존성 아님(scorer는 utils.py에 미러링). 임의 수정 금지.
 - VM 운영 레시피(NCCL loopback + HF offline cache)는 `docs/05-operations-and-troubleshooting.md` 참조.
 
 ---

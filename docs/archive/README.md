@@ -28,13 +28,13 @@ engineering-source 저장소에 보존된다(이 slim 저장소에 복제하지 
 
 ## Third-party Vendor Note
 
-이 하네스는 두 개의 third-party 저장소에 의존한다. 두 저장소 모두 `setup-post.sh`가 clone하며  
-임의 수정 금지이다. 버전 변경 시 평가 재현성에 영향을 미치므로 반드시 검토 후 진행한다.
+이 하네스는 두 개의 third-party 컴포넌트에 의존한다. 버전 변경 시 평가 재현성에 영향을  
+미치므로 반드시 검토 후 진행한다.
 
-| 컴포넌트 | 출처 | 고정 버전 | 역할 |
+| 컴포넌트 | 출처 | 고정 버전 | 설치 · 역할 |
 |---|---|---|---|
-| `lm-evaluation-harness` | EleutherAI/lm-evaluation-harness | SHA `97a5e2c7` | 평가 엔진 — task 실행·채점·집계 |
-| `gsma-evals` | gsma-labs/evals | (setup-post.sh 지정 버전) | 공식 GSMA scorer 소스(telemath isclose / telelogs soft / 3gpp WG regex) |
+| `lm-evaluation-harness` (`lm_eval`) | EleutherAI/lm-evaluation-harness | `0.4.12` (PyPI) | `setup-post.sh`가 `uv pip install "lm_eval[hf,vllm]==0.4.12"`로 설치. 평가 엔진 — task 실행·채점·집계 |
+| `gsma-evals` | gsma-labs/evals | (setup-post.sh 지정) | (선택) `setup-post.sh`가 참조용 clone. **런타임 의존성 아님**(scorer는 utils.py에 미러링). 공식 GSMA scorer 소스 대조용 |
 
-`setup-post.sh` 외부에서 이 저장소들을 별도 수정하거나 다른 commit으로 교체하면  
-`make smoke` 및 `pytest tests/`가 실패할 수 있다.
+lm_eval 버전을 바꾸거나 task YAML / `utils.py`를 임의로 수정하면 `make smoke` 및  
+`pytest tests/`가 실패할 수 있다. gsma-evals는 정렬 기준점이므로 원본을 유지한다.

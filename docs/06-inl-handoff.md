@@ -29,8 +29,8 @@ EleutherAI **lm-evaluation-harness 기반**으로 GSMA Open Telco AI 7개 통신
 ./setup-pre.sh && ./setup-main.sh && ./setup-post.sh
 ```
 
-- lm-evaluation-harness pin SHA: `97a5e2c7` (editable, `--no-deps`)
-- gsma-evals scorer repo: `setup-post.sh`가 자동 클론
+- lm_eval: PyPI 버전 고정 설치 — `uv pip install "lm_eval[hf,vllm]==0.4.12"` (setup-post.sh)
+- gsma-evals scorer repo: (선택) `setup-post.sh`가 참조용으로 클론 — 런타임 의존성 아님
 - 환경 하드핀 및 재설치 SOP 전체: [docs/05-operations-and-troubleshooting.md](05-operations-and-troubleshooting.md)
 
 ---
@@ -54,13 +54,15 @@ make delivery-check
 
 ## 4. 대표 실행 (ot-lite / ot-full)
 
+기본 backend는 vLLM이다(`MAX_MODEL_LEN=8192`·`GPU_MEMORY_UTILIZATION=0.9` 기본 적용).
+HF backend(`BACKEND=hf`)는 경량/대체 경로이며 긴 생성형 입력을 left-truncation 하므로 대표 측정에는 vLLM을 쓴다.
+
 ```bash
-# ot-lite_gsma 전체 실행 (HF 백엔드; 빠른 스크리닝용)
+# ot-lite_gsma 전체 실행 (기본 backend = vLLM)
 CONFIRM_FULL_RUN=1 MODEL_NAME=google/gemma-3-4b-it ./run_open_telco_otlite.sh
 
-# ot-full_gsma 전체 실행 (public 동일 split, 16,866 docs; vLLM 권장)
-CONFIRM_FULL_RUN=1 \
-  BACKEND=vllm VLLM_VISIBLE_DEVICES=0 \
+# ot-full_gsma 전체 실행 (public 동일 split, 16,866 docs; 기본 backend = vLLM)
+CONFIRM_FULL_RUN=1 VLLM_VISIBLE_DEVICES=0 \
   MODEL_NAME=google/gemma-3-4b-it \
   ./run_open_telco_otfull.sh
 ```
